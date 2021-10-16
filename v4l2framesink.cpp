@@ -6,7 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "v4l2framesink.h"
+#include <v4l2framesink/v4l2framesink.h>
 
 struct FrameSink
 {
