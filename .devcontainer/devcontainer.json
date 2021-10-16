@@ -2,7 +2,15 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.202.3/containers/docker-existing-dockerfile
 {
 	"name": "Existing Dockerfile",
-	"runArgs": ["--init"],
+	"runArgs": [
+		"--device", "/dev/video0",
+		"--device", "/dev/video99",
+		"-e", "DISPLAY=${env:DISPLAY}",
+		"-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+		"--gpus", "all"
+	],
+
+	"initializeCommand": "command -v xhost && xhost +SI:localuser:root || true",
 
 	// Sets the run context to one level up instead of the .devcontainer folder.
 	"context": "..",
