@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Generate ctypes wrapper for calling into native code from Python using ctypesgen
+"ctypesgen" \
+  --no-macro-warnings \
+  -I "@CMAKE_CURRENT_SOURCE_DIR@/include" -L "@CMAKE_CURRENT_BINARY_DIR@" -l "lib@PROJECT_NAME@.so" \
+  "@CMAKE_CURRENT_SOURCE_DIR@/include/@PROJECT_NAME@/@PROJECT_NAME@.h" -o "@CMAKE_CURRENT_BINARY_DIR@/@PROJECT_NAME@.py"
