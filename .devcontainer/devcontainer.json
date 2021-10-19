@@ -3,8 +3,9 @@
 {
 	"name": "Existing Dockerfile",
 	"runArgs": [
-		"--device", "/dev/video0",
-		"--device", "/dev/video99",
+		//"--device", "/dev/video0",
+		//"--device", "/dev/video99",
+		"--privileged",
 		"-e", "DISPLAY=${env:DISPLAY}",
 		"-v", "/tmp/.X11-unix:/tmp/.X11-unix",
 		"--gpus", "all"
