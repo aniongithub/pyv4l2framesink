@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(v4l2framesink VERSION 0.1 DESCRIPTION "Shared C library and Python ctypes bindings for writing frames into a v4l2 sink device")
 
-find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
+find_program(ctypesgen_EXECUTABLE NAMES ctypesgen PATHS ${USER}/.local/bin/ REQUIRED)
 
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/py${PROJECT_NAME}/__init__.py "")
 
