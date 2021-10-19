@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(v4l2framesink VERSION 0.1 DESCRIPTION "Shared C library and Python ctypes bindings for writing frames into a v4l2 sink device")
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
-find_program(ctypesgen_EXECUTABLE NAMES ctypesgen PATHS ${USER}/.local/bin/ REQUIRED)
+find_program(ctypesgen_EXECUTABLE NAMES ctypesgen REQUIRED)
 
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/py${PROJECT_NAME}/__init__.py "")
 
@@ -18,12 +18,6 @@ target_include_directories(${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR})
-
-# Ensure ctypesgen is installed
-add_custom_target(install_ctypesgen
-    COMMAND ${Python3_EXECUTABLE} -m pip install -r build-requirements.txt
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-add_dependencies(${PROJECT_NAME} install_ctypesgen)
 
 configure_file(generate-bindings.sh.in generate-bindings.sh @ONLY)
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
